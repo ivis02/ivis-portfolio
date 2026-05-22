@@ -6,34 +6,32 @@
 /* ── CSS Variables: Cool Theme ─────────────────────── */
 
 :root[data-theme="cool"] {
-  /* 다크 섹션 — 쿨 미드나이트 네이비 */
+  /* 쿨 팔레트 — 다크·라이트 모두 한색 계열 */
   --bg-dark:  #0b0d16;
+  --bg-light: #e7e9f3;
   --fg-dark:  #b8c4dc;
-  /* 라이트 섹션 — 난색 아이보리 (warm ivory) */
-  --bg-light: #edeae2;
-  --fg-light: #201a10;
-  /* 액센트 — 인디고 (양쪽 배경 모두에서 잘 읽힘) */
+  --fg-light: #191e34;
   --accent:   #5b6ec4;
   --accent-glow: rgba(91, 110, 196, 0.22);
-  --sil-tint-l: rgba(32, 26, 14, 0.52);
+  --sil-tint-l: rgba(18, 24, 58, 0.52);
   --sil-tint-d: rgba(155, 172, 220, 0.42);
-  /* 버블: 라이트 섹션 → 난색 tint / 다크 섹션 → 쿨 tint */
-  --bub-bg-l:  rgba(160, 140, 96, 0.10);
-  --bub-bd-l:  rgba(160, 140, 96, 0.20);
+  /* 버블 — 모두 쿨 tint */
+  --bub-bg-l:  rgba(120, 132, 200, 0.10);
+  --bub-bd-l:  rgba(120, 132, 200, 0.18);
   --bub-bg-d:  rgba(100, 120, 195, 0.08);
   --bub-bd-d:  rgba(100, 120, 195, 0.13);
   /* blob */
-  --blob-l: rgba(168, 140, 88, 0.06);
+  --blob-l: rgba(91, 110, 196, 0.055);
   --blob-d: rgba(60, 80, 160, 0.065);
   /* nav */
   --nav-bg:   rgba(11, 13, 22, 0.82);
-  --nav-bg-l: rgba(237, 234, 226, 0.82);
+  --nav-bg-l: rgba(231, 233, 243, 0.82);
   /* cord */
-  --cord-c: rgba(32, 26, 16, 0.22);
-  /* card (warm light bg 위) */
-  --card-bg:     rgba(255, 252, 246, 0.72);
-  --card-border: rgba(32, 26, 16, 0.07);
-  --card-shadow: rgba(32, 26, 16, 0.07);
+  --cord-c: rgba(25, 30, 52, 0.22);
+  /* card */
+  --card-bg:     rgba(255,255,255,0.68);
+  --card-border: rgba(25, 30, 52, 0.07);
+  --card-shadow: rgba(18, 24, 58, 0.07);
   /* thumb */
   --thumb-web:  linear-gradient(135deg, #0f1828 0%, #192846 100%);
   --thumb-vid:  linear-gradient(135deg, #0d0e1c 0%, #191736 100%);
@@ -990,12 +988,21 @@ body { overflow-x: hidden; }
   color: var(--bg-dark);
 }
 
-/* 스킬 아이콘 박스 (다크 → 라이트=warm 배경이 되므로 난색 계열로) */
-[data-inverted] .section-dark .skill-icon-box {
+/* 스킬 아이콘 박스 — 반전 시 다크 섹션이 라이트 bg를 가짐 */
+/* cool: 라이트 bg = 쿨 블루그레이 */
+:root[data-theme="cool"][data-inverted] .section-dark .skill-icon-box {
+  border-color: rgba(25, 30, 52, 0.13);
+  background: rgba(25, 30, 52, 0.06);
+}
+:root[data-theme="cool"][data-inverted] .section-dark .skill-icon-box:hover {
+  background: rgba(25, 30, 52, 0.11);
+}
+/* warm: 라이트 bg = 웜 아이보리 */
+:root[data-theme="warm"][data-inverted] .section-dark .skill-icon-box {
   border-color: rgba(32, 26, 16, 0.13);
   background: rgba(32, 26, 16, 0.06);
 }
-[data-inverted] .section-dark .skill-icon-box:hover {
+:root[data-theme="warm"][data-inverted] .section-dark .skill-icon-box:hover {
   background: rgba(32, 26, 16, 0.11);
 }
 
@@ -1008,24 +1015,17 @@ body { overflow-x: hidden; }
 [data-inverted] .section-light .card-title,
 [data-inverted] .section-light .card-desc { color: var(--fg-dark); }
 
-/* Contact 링크 박스 (다크 → 라이트=warm 배경) */
-[data-inverted] .section-dark .contact-item {
-  border-color: rgba(32, 26, 16, 0.12);
-}
-[data-inverted] .section-dark .contact-item:hover {
-  background: rgba(32, 26, 16, 0.04);
-}
+/* Contact 링크 박스 — 반전 시 다크→라이트 bg */
+:root[data-theme="cool"][data-inverted] .section-dark .contact-item { border-color: rgba(25, 30, 52, 0.12); }
+:root[data-theme="cool"][data-inverted] .section-dark .contact-item:hover { background: rgba(25, 30, 52, 0.04); }
+:root[data-theme="warm"][data-inverted] .section-dark .contact-item { border-color: rgba(32, 26, 16, 0.12); }
+:root[data-theme="warm"][data-inverted] .section-dark .contact-item:hover { background: rgba(32, 26, 16, 0.04); }
 
-/* 스크롤 탑 버튼 (다크 → 라이트=warm) */
-[data-inverted] .section-dark .scroll-top {
-  border-color: rgba(32, 26, 16, 0.15);
-  background: rgba(32, 26, 16, 0.05);
-  color: rgba(32, 26, 16, 0.45);
-}
-[data-inverted] .section-dark .scroll-top:hover {
-  background: rgba(32, 26, 16, 0.10);
-  color: rgba(32, 26, 16, 0.75);
-}
+/* 스크롤 탑 버튼 — 반전 시 다크→라이트 bg */
+:root[data-theme="cool"][data-inverted] .section-dark .scroll-top { border-color: rgba(25,30,52,.15); background: rgba(25,30,52,.05); color: rgba(25,30,52,.45); }
+:root[data-theme="cool"][data-inverted] .section-dark .scroll-top:hover { background: rgba(25,30,52,.10); color: rgba(25,30,52,.75); }
+:root[data-theme="warm"][data-inverted] .section-dark .scroll-top { border-color: rgba(32,26,16,.15); background: rgba(32,26,16,.05); color: rgba(32,26,16,.45); }
+:root[data-theme="warm"][data-inverted] .section-dark .scroll-top:hover { background: rgba(32,26,16,.10); color: rgba(32,26,16,.75); }
 
 
 /* ── Reduced Motion ──────────────────────────────── */

@@ -109,14 +109,17 @@ let inverted = false;
 
 function toggleTheme() {
   inverted = !inverted;
+
+  // 쿨(기본) ↔ 웜+반전 동시 전환
+  // 기본: cool 팔레트, 섹션 순서 그대로
+  // 반전: warm 팔레트, 섹션 dark/light 순서 뒤집힘
+  $html.dataset.theme = inverted ? 'warm' : 'cool';
   $html.toggleAttribute('data-inverted', inverted);
 
-  // pull animation
   $cordPull.classList.remove('pulled');
   void $cordPull.offsetWidth;
   $cordPull.classList.add('pulled');
 
-  // nav 색 즉시 재계산
   onScroll();
 }
 
