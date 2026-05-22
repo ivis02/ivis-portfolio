@@ -961,6 +961,75 @@ body { overflow-x: hidden; }
 }
 
 
+/* ══════════════════════════════════════════════════════
+   INVERTED MODE — cord를 당기면 각 섹션 dark/light 반전
+   .section-dark ↔ .section-light 의 배경/색상이 교체됨
+══════════════════════════════════════════════════════ */
+
+/* 섹션 배경 & 텍스트 */
+[data-inverted] .section-dark  { background-color: var(--bg-light); color: var(--fg-light); }
+[data-inverted] .section-light { background-color: var(--bg-dark);  color: var(--fg-dark);  }
+
+/* 버블 */
+[data-inverted] .section-dark  .bub { background: var(--bub-bg-l); border-color: var(--bub-bd-l); }
+[data-inverted] .section-light .bub { background: var(--bub-bg-d); border-color: var(--bub-bd-d); }
+
+/* blob 광원 */
+[data-inverted] .section-dark  .blob { background: var(--blob-l); }
+[data-inverted] .section-light .blob { background: var(--blob-d); }
+
+/* nav 스크롤 배경 (JS가 on-dark/on-light를 반전 반영해서 클래스 업데이트함) */
+[data-inverted] .nav.scrolled.on-dark  { background: var(--nav-bg-l); }
+[data-inverted] .nav.scrolled.on-light { background: var(--nav-bg);   }
+
+/* 히어로 CTA 버튼 (라이트 → 다크 배경이 되므로 색 반전) */
+[data-inverted] .section-light .btn-primary {
+  background: var(--fg-dark);
+  color: var(--bg-dark);
+}
+
+/* 스킬 아이콘 박스 (다크 → 라이트 배경이 되므로 테두리/배경 반전) */
+[data-inverted] .section-dark .skill-icon-box {
+  border-color: rgba(25, 30, 52, 0.13);
+  background: rgba(25, 30, 52, 0.06);
+}
+[data-inverted] .section-dark .skill-icon-box:hover {
+  background: rgba(25, 30, 52, 0.11);
+}
+:root[data-theme="warm"][data-inverted] .section-dark .skill-icon-box {
+  border-color: rgba(44, 32, 16, 0.13);
+  background: rgba(44, 32, 16, 0.06);
+}
+
+/* 프로젝트 카드 (라이트 → 다크 배경) */
+[data-inverted] .section-light .project-card {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.07);
+}
+[data-inverted] .section-light .card-type,
+[data-inverted] .section-light .card-title,
+[data-inverted] .section-light .card-desc { color: var(--fg-dark); }
+
+/* Contact 링크 박스 (다크 → 라이트 배경) */
+[data-inverted] .section-dark .contact-item {
+  border-color: rgba(25, 30, 52, 0.12);
+}
+[data-inverted] .section-dark .contact-item:hover {
+  background: rgba(25, 30, 52, 0.04);
+}
+
+/* 스크롤 탑 버튼 (다크 → 라이트) */
+[data-inverted] .section-dark .scroll-top {
+  border-color: rgba(25, 30, 52, 0.15);
+  background: rgba(25, 30, 52, 0.05);
+  color: rgba(25, 30, 52, 0.45);
+}
+[data-inverted] .section-dark .scroll-top:hover {
+  background: rgba(25, 30, 52, 0.10);
+  color: rgba(25, 30, 52, 0.75);
+}
+
+
 /* ── Reduced Motion ──────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {

@@ -105,17 +105,19 @@ const $html         = document.documentElement;
    1. THEME TOGGLE (Cord)
 ══════════════════════════════════════════════════════ */
 
-let theme = 'cool';
+let inverted = false;
 
 function toggleTheme() {
-  theme = theme === 'cool' ? 'warm' : 'cool';
-  $html.dataset.theme = theme;
-  $cordLabel.textContent = 'Pull to shift';
+  inverted = !inverted;
+  $html.toggleAttribute('data-inverted', inverted);
 
   // pull animation
   $cordPull.classList.remove('pulled');
   void $cordPull.offsetWidth;
   $cordPull.classList.add('pulled');
+
+  // nav 색 즉시 재계산
+  onScroll();
 }
 
 $cordPull?.addEventListener('click', toggleTheme);
@@ -137,8 +139,12 @@ function onScroll() {
     if (y + window.innerHeight * 0.45 >= sec.offsetTop) active = sec;
   });
 
-  $nav.classList.toggle('on-dark',  active.classList.contains('section-dark'));
-  $nav.classList.toggle('on-light', active.classList.contains('section-light'));
+  // data-inverted 상태일 때 dark/light 판단을 반전
+  const isDark = active.classList.contains('section-dark');
+  const effectivelyDark = inverted ? !isDark : isDark;
+
+  $nav.classList.toggle('on-dark',   effectivelyDark);
+  $nav.classList.toggle('on-light', !effectivelyDark);
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
