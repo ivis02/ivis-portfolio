@@ -12,18 +12,18 @@
 </head>
 <body>
 
-  <!-- ══ Theme Cord (fixed, right side) ══ -->
+  <!-- ══ Theme Cord — 상단 오른쪽에서 늘어짐 ══ -->
   <div class="theme-cord" id="themeCord">
-    <div class="cord-line cord-line-top"></div>
-    <button class="cord-pull" id="cordPull" aria-label="색온도 전환 (cool ↔ warm)">
+    <div class="cord-line"></div>
+    <button class="cord-knob" id="cordPull" aria-label="색온도 전환 (cool ↔ warm)">
       <span class="cord-dot"></span>
     </button>
-    <div class="cord-line cord-line-bot"></div>
-    <span class="cord-label" id="cordLabel">warm</span>
+    <span class="cord-label" id="cordLabel">Pull to shift</span>
   </div>
 
   <!-- ══ Navigation ══ -->
-  <nav class="nav on-dark" id="nav">
+  <!-- Hero가 라이트 섹션이므로 초기값 on-light -->
+  <nav class="nav on-light" id="nav">
     <!-- ✏️ 로고: 텍스트 플레이스홀더 — 이미지나 SVG 로고로 교체 -->
     <a class="nav-logo" href="#hero">ivis</a>
     <ul class="nav-links">
@@ -34,91 +34,132 @@
   </nav>
 
   <!-- ══════════════════════════════════════
-       SECTION 1 — HERO  (dark)
+       SECTION 01 — HERO  (light)
   ══════════════════════════════════════════ -->
-  <section id="hero" class="section section-dark">
+  <section id="hero" class="section section-light">
 
-    <!-- Background scene: silhouettes + blobs -->
     <div class="scene">
-      <!-- ✏️ 실루엣 SVG — 더미 플레이스홀더, 직접 교체 예정 -->
-      <!-- Far layer: low opacity, heavy blur, small -->
-      <div class="sil sil-far float-a" style="right:-12vw; bottom:-8%; width:52vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <!-- Near layer: slightly higher opacity, light blur, large -->
-      <div class="sil sil-near float-b" style="left:-18vw; top:-6%; width:88vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <!-- Blobs -->
-      <div class="blob float-c" style="width:44vw;height:44vw;top:8%;left:28%;border-radius:50%;"></div>
-      <div class="blob float-d" style="width:28vw;height:28vw;bottom:12%;right:8%;border-radius:55% 45% 50% 50%;"></div>
+      <!-- 큰 버블 (오른쪽 배경) -->
+      <div class="bub bup1" style="width:24vw;height:24vw;top:8%;right:5%;border-radius:58% 42% 63% 37% / 50% 54% 46% 50%;"></div>
+      <!-- 중간 버블들 -->
+      <div class="bub bup3" style="width:11vw;height:11vw;top:28%;right:26%;border-radius:50% 50% 42% 58% / 60% 44% 56% 40%;"></div>
+      <div class="bub bup5" style="width:7vw;height:7vw;top:55%;right:18%;border-radius:62% 38% 55% 45% / 48% 58% 42% 52%;"></div>
+      <!-- 작은 버블들 -->
+      <div class="bub bup2" style="width:4.5vw;height:4.5vw;top:20%;right:15%;border-radius:50%;"></div>
+      <div class="bub bup6" style="width:3vw;height:3vw;top:68%;right:32%;border-radius:50%;"></div>
+      <!-- 경계 넘는 버블 (About 섹션으로 흘러내려감) -->
+      <div class="bub xbd bup4" style="width:16vw;height:16vw;bottom:-8vw;left:24%;border-radius:52% 48% 60% 40% / 46% 55% 45% 54%;"></div>
+      <div class="bub xbd bup2" style="width:9vw;height:9vw;bottom:-5vw;left:44%;border-radius:58% 42% 50% 50% / 52% 48% 52% 48%;"></div>
+      <!-- blob 광원 -->
+      <div class="blob float-e" style="width:52vw;height:44vw;top:2%;right:-14%;border-radius:62% 38% 52% 48%;"></div>
     </div>
 
-    <!-- Content -->
+    <!-- ✏️ 후드 실루엣 이미지 — 파일명만 바꾸면 됨 -->
+    <div class="sil-figure float-b" style="right:-4%; top:-5%;">
+      <img src="" alt="" class="sil-img" aria-hidden="true" />
+      <!-- 이미지 없을 때 보이는 더미 실루엣 (나중에 img src 입력 시 자동으로 대체됨) -->
+      <div class="sil-dummy" aria-hidden="true"></div>
+    </div>
+
     <div class="content hero-content">
-      <!-- ✏️ 로고 플레이스홀더 -->
-      <div class="hero-eyebrow">ivis</div>
-      <!-- ✏️ 이름 입력 -->
-      <h1 class="hero-name">Your<br/>Name</h1>
+      <!-- ✏️ 히어로 eyebrow 텍스트 -->
+      <p class="hero-eyebrow">시선(view) · 후드 · 정체성</p>
+      <!-- ✏️ 히어로 메인 카피 -->
+      <h1 class="hero-name">My View,<br/>Defines Me<span class="accent-dot">.</span></h1>
+      <hr class="hero-rule" />
       <!-- ✏️ 한줄 소개 -->
-      <p class="hero-tagline">시선을 담는 디자이너 &mdash; 웹 · 영상 · 그래픽</p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary">View Work</a>
-        <a href="#contact" class="btn btn-ghost">Contact</a>
-      </div>
+      <p class="hero-tagline">
+        보이지 않지만, 느껴지는 시선.<br/>
+        디자인으로 나의 정체성을 정의합니다.
+      </p>
+      <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
     </div>
 
-    <!-- Scroll indicator -->
     <div class="scroll-hint" aria-hidden="true"><span></span></div>
   </section>
 
 
   <!-- ══════════════════════════════════════
-       SECTION 2 — ABOUT  (light)
+       SECTION 02 — ABOUT  (dark)
   ══════════════════════════════════════════ -->
-  <section id="about" class="section section-light">
+  <section id="about" class="section section-dark">
 
     <div class="scene">
-      <!-- ✏️ 실루엣 SVG — 더미 플레이스홀더 -->
-      <div class="sil sil-mid float-e" style="right:-22vw; top:8%; width:68vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <div class="blob float-a" style="width:50vw;height:36vw;top:18%;left:8%;border-radius:60% 40% 55% 45%;"></div>
+      <!-- 왼쪽 버블들 -->
+      <div class="bub bup3" style="width:13vw;height:13vw;top:10%;left:6%;border-radius:55% 45% 62% 38% / 50% 58% 42% 50%;"></div>
+      <div class="bub bup5" style="width:6vw;height:6vw;top:36%;left:16%;border-radius:48% 52% 58% 42% / 54% 46% 54% 46%;"></div>
+      <div class="bub bup1" style="width:4vw;height:4vw;top:54%;left:10%;border-radius:50%;"></div>
+      <!-- 경계 넘는 버블 (위에서 내려옴 — Hero와 연결) -->
+      <div class="bub xbd bup6" style="width:19vw;height:19vw;top:-9vw;left:20%;border-radius:56% 44% 58% 42% / 50% 56% 44% 50%;"></div>
+      <!-- 경계 넘는 버블 (아래로 — Projects와 연결) -->
+      <div class="bub xbd bup4" style="width:14vw;height:14vw;bottom:-7vw;right:18%;border-radius:60% 40% 50% 50% / 48% 52% 48% 52%;"></div>
+      <!-- blob 광원 -->
+      <div class="blob float-d" style="width:56vw;height:46vw;top:8%;right:-16%;border-radius:52% 48% 42% 58%;"></div>
+    </div>
+
+    <!-- ✏️ 후드 실루엣 이미지 -->
+    <div class="sil-figure float-f" style="right:-6%; bottom:-8%;">
+      <img src="" alt="" class="sil-img" aria-hidden="true" />
+      <div class="sil-dummy" aria-hidden="true"></div>
     </div>
 
     <div class="content about-content">
-      <div class="section-label">About</div>
-      <!-- ✏️ 자기소개 제목 -->
-      <h2 class="section-title">시선으로<br/>만드는 것들</h2>
-      <!-- ✏️ 자기소개 본문 -->
+      <div class="section-num">02</div>
+      <!-- ✏️ About 제목 -->
+      <h2 class="section-title">About<span class="accent-dot">.</span></h2>
+      <!-- ✏️ 자기소개 문구 -->
       <p class="about-bio">
-        저는 웹과 영상, 그래픽을 넘나드는 디자이너입니다.<br/>
-        보는 사람의 시선이 자연스럽게 흐르는 경험을 만드는 것에 집중합니다.
+        기술로 아이디어를 실현하고,<br/>
+        경험을 디자인합니다.
       </p>
 
-      <div class="skills-section">
-        <div class="skill-group">
-          <div class="skill-group-label">Web</div>
-          <div class="skill-tags">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
+      <!-- 스킬 아이콘 그리드 -->
+      <div class="skill-icons">
+        <div class="skill-icon-item">
+          <div class="skill-icon-box">
+            <!-- HTML5 아이콘 (SVG 인라인) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/>
+            </svg>
           </div>
+          <span>HTML CSS JS</span>
         </div>
-        <div class="skill-group">
-          <div class="skill-group-label">Design</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Photoshop</span>
-            <span class="skill-tag">Illustrator</span>
-            <span class="skill-tag">After Effects</span>
-            <span class="skill-tag">망고보드</span>
+        <div class="skill-icon-item">
+          <div class="skill-icon-box">
+            <!-- Photoshop 아이콘 -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M0 4.8C0 2.149 2.149 0 4.8 0h14.4C21.851 0 24 2.149 24 4.8v14.4C24 21.851 21.851 24 19.2 24H4.8C2.149 24 0 21.851 0 19.2V4.8zm7.2 3.6v7.8h1.8v-2.4h1.2c1.99 0 3-1.01 3-3s-1.01-2.4-3-2.4H7.2zm1.8 1.5h1.2c.99 0 1.2.41 1.2.9s-.21.9-1.2.9H9V9.9zm7.26.42c-1.86 0-2.46.99-2.46 1.8 0 .99.6 1.56 1.68 1.98.78.3.96.54.96.9 0 .42-.3.66-.9.66-.6 0-1.14-.24-1.5-.48l-.3 1.38c.42.24 1.02.42 1.8.42 1.68 0 2.52-.9 2.52-2.04 0-.96-.54-1.56-1.62-1.98-.84-.3-1.02-.48-1.02-.84 0-.3.24-.54.78-.54.54 0 1.02.18 1.32.36l.3-1.32c-.36-.18-.9-.3-1.56-.3z"/>
+            </svg>
           </div>
+          <span>Photoshop</span>
+        </div>
+        <div class="skill-icon-item">
+          <div class="skill-icon-box">
+            <!-- Illustrator 아이콘 -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M0 4.8C0 2.149 2.149 0 4.8 0h14.4C21.851 0 24 2.149 24 4.8v14.4C24 21.851 21.851 24 19.2 24H4.8C2.149 24 0 21.851 0 19.2V4.8zm9.063 3.6L6 16.8h1.98l.72-2.28h3l.72 2.28h2.04L11.34 8.4H9.063zm.597 4.56l1.14-3.66 1.14 3.66H9.66zM15.6 8.1a1.05 1.05 0 100 2.1 1.05 1.05 0 000-2.1zm-.9 2.7v6h1.8v-6h-1.8z"/>
+            </svg>
+          </div>
+          <span>Illustrator</span>
+        </div>
+        <div class="skill-icon-item">
+          <div class="skill-icon-box">
+            <!-- After Effects 아이콘 -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <path d="M0 4.8C0 2.149 2.149 0 4.8 0h14.4C21.851 0 24 2.149 24 4.8v14.4C24 21.851 21.851 24 19.2 24H4.8C2.149 24 0 21.851 0 19.2V4.8zm7.063 3.6L4 16.8h1.98l.72-2.28h3l.72 2.28h2.04L9.34 8.4H7.063zm.597 4.56l1.14-3.66 1.14 3.66H7.66zm5.46-4.56V16.8h4.68v-1.62H15v-1.56h2.64V12h-2.64v-1.62h2.82V8.4H13.12z"/>
+            </svg>
+          </div>
+          <span>After Effects</span>
+        </div>
+        <div class="skill-icon-item">
+          <div class="skill-icon-box">
+            <!-- 망고보드 아이콘 (M 텍스트) -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+              <rect width="24" height="24" rx="4" fill="none"/>
+              <text x="12" y="17" text-anchor="middle" font-size="14" font-weight="bold" font-family="sans-serif">M</text>
+            </svg>
+          </div>
+          <span>망고보드</span>
         </div>
       </div>
     </div>
@@ -126,29 +167,32 @@
 
 
   <!-- ══════════════════════════════════════
-       SECTION 3 — PROJECTS  (dark)
+       SECTION 03 — PROJECTS  (light)
   ══════════════════════════════════════════ -->
-  <section id="projects" class="section section-dark">
+  <section id="projects" class="section section-light">
 
     <div class="scene">
-      <!-- ✏️ 실루엣 SVG — 더미 플레이스홀더 -->
-      <div class="sil sil-far float-f" style="left:-8vw; top:-14%; width:50vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <div class="sil sil-near float-b" style="right:-26vw; bottom:-4%; width:86vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <div class="blob float-e" style="width:38vw;height:38vw;top:14%;right:4%;border-radius:50%;"></div>
-      <div class="blob float-c" style="width:26vw;height:30vw;bottom:6%;left:18%;border-radius:45% 55% 50% 50%;"></div>
+      <!-- 오른쪽 버블들 -->
+      <div class="bub bup2" style="width:20vw;height:20vw;top:6%;right:4%;border-radius:54% 46% 60% 40% / 52% 50% 50% 48%;"></div>
+      <div class="bub bup5" style="width:8vw;height:8vw;top:30%;right:22%;border-radius:62% 38% 48% 52% / 46% 54% 46% 54%;"></div>
+      <div class="bub bup3" style="width:5vw;height:5vw;top:52%;right:14%;border-radius:50%;"></div>
+      <!-- 경계 넘는 버블 (위에서 — About과 연결) -->
+      <div class="bub xbd bup1" style="width:15vw;height:15vw;top:-8vw;right:16%;border-radius:50% 50% 56% 44% / 54% 46% 54% 46%;"></div>
+      <!-- 경계 넘는 버블 (아래로 — Contact와 연결) -->
+      <div class="bub xbd bup6" style="width:11vw;height:11vw;bottom:-6vw;left:30%;border-radius:58% 42% 52% 48% / 50% 56% 44% 50%;"></div>
+      <!-- blob 광원 -->
+      <div class="blob float-c" style="width:48vw;height:40vw;top:12%;left:-14%;border-radius:52% 48% 62% 38%;"></div>
+    </div>
+
+    <!-- ✏️ 후드 실루엣 이미지 -->
+    <div class="sil-figure float-e" style="right:-8%; top:0%;">
+      <img src="" alt="" class="sil-img" aria-hidden="true" />
+      <div class="sil-dummy" aria-hidden="true"></div>
     </div>
 
     <div class="content projects-content">
-      <div class="section-label">Projects</div>
-      <h2 class="section-title">Work</h2>
+      <div class="section-num">03</div>
+      <h2 class="section-title">Projects<span class="accent-dot">.</span></h2>
 
       <!-- Filter Tabs -->
       <div class="filter-tabs" role="tablist" aria-label="프로젝트 카테고리 필터">
@@ -161,39 +205,63 @@
 
       <!-- Cards rendered by script.js -->
       <div class="projects-grid" id="projectsGrid"></div>
+
+      <!-- 더 많은 작업물 보기 -->
+      <div class="projects-more">
+        <!-- ✏️ 링크나 다른 동작으로 교체 가능 -->
+        <a href="#" class="btn-more">더 많은 작업물 보기 &rarr;</a>
+      </div>
     </div>
   </section>
 
 
   <!-- ══════════════════════════════════════
-       SECTION 4 — CONTACT  (light)
+       SECTION 04 — CONTACT  (dark)
   ══════════════════════════════════════════ -->
-  <section id="contact" class="section section-light">
+  <section id="contact" class="section section-dark">
 
     <div class="scene">
-      <!-- ✏️ 실루엣 SVG — 더미 플레이스홀더 -->
-      <div class="sil sil-mid float-d" style="left:-14vw; bottom:4%; width:66vw;">
-        <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M200 30 C240 24 292 44 312 86 C332 128 326 178 304 202 C340 208 376 220 390 258 L380 560 C375 574 356 580 330 577 L322 600 L78 600 L70 577 C44 580 25 574 20 560 L10 258 C24 220 60 208 96 202 C74 178 68 128 88 86 C108 44 160 24 200 30 Z"/>
-        </svg>
-      </div>
-      <div class="blob float-f" style="width:54vw;height:38vw;top:8%;right:-10%;border-radius:50% 50% 40% 60%;"></div>
+      <!-- 버블들 -->
+      <div class="bub bup3" style="width:17vw;height:17vw;top:14%;right:8%;border-radius:56% 44% 64% 36% / 50% 58% 42% 50%;"></div>
+      <div class="bub bup1" style="width:7vw;height:7vw;top:42%;right:24%;border-radius:62% 38% 52% 48% / 46% 56% 44% 54%;"></div>
+      <div class="bub bup5" style="width:4vw;height:4vw;top:62%;right:16%;border-radius:50%;"></div>
+      <!-- 경계 넘는 버블 (위에서 — Projects와 연결) -->
+      <div class="bub xbd bup2" style="width:13vw;height:13vw;top:-7vw;left:28%;border-radius:54% 46% 58% 42% / 52% 48% 52% 48%;"></div>
+      <!-- blob 광원 -->
+      <div class="blob float-b" style="width:54vw;height:44vw;bottom:4%;right:-14%;border-radius:58% 42% 52% 48%;"></div>
+    </div>
+
+    <!-- ✏️ 후드 실루엣 이미지 -->
+    <div class="sil-figure float-d" style="right:-5%; bottom:-10%;">
+      <img src="" alt="" class="sil-img" aria-hidden="true" />
+      <div class="sil-dummy" aria-hidden="true"></div>
     </div>
 
     <div class="content contact-content">
-      <div class="section-label">Contact</div>
-      <!-- ✏️ 연락 제목 -->
-      <h2 class="section-title">함께<br/>만들어요</h2>
+      <div class="section-num">04</div>
+      <!-- ✏️ Contact 제목 -->
+      <h2 class="section-title">Contact<span class="accent-dot">.</span></h2>
+      <!-- ✏️ 연락 서브 카피 -->
+      <p class="contact-sub">함께 멋진 프로젝트를<br/>만들어요.</p>
 
       <div class="contact-links">
         <!-- ✏️ 이메일 주소 교체 -->
-        <a class="contact-item" href="mailto:your@email.com">
-          <span class="contact-icon">&#9993;</span>
-          <span>your@email.com</span>
+        <a class="contact-item" href="mailto:your.email@example.com">
+          <span class="contact-icon">
+            <svg viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg" width="18">
+              <rect x=".5" y=".5" width="19" height="15" rx="1.5" stroke="currentColor" stroke-opacity=".6"/>
+              <path d="M1 1l9 8 9-8" stroke="currentColor" stroke-opacity=".6"/>
+            </svg>
+          </span>
+          <span>your.email@example.com</span>
         </a>
         <!-- ✏️ GitHub 주소 교체 -->
         <a class="contact-item" href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-          <span class="contact-icon">&#9670;</span>
+          <span class="contact-icon">
+            <svg viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="18" style="opacity:.6">
+              <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.138 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </span>
           <span>github.com/yourusername</span>
         </a>
       </div>
@@ -201,11 +269,14 @@
       <!-- ✏️ 저작권 문구 -->
       <p class="contact-footer">&copy; 2025 ivis. All rights reserved.</p>
     </div>
+
+    <!-- 스크롤 탑 버튼 -->
+    <button class="scroll-top" id="scrollTop" aria-label="맨 위로">&#8593;</button>
   </section>
 
 
   <!-- ══════════════════════════════════════
-       MODAL (동적으로 콘텐츠 주입)
+       MODAL
   ══════════════════════════════════════════ -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="작업물 상세보기" hidden>
     <div class="modal-overlay" id="modalOverlay"></div>

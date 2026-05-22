@@ -110,11 +110,11 @@ let theme = 'cool';
 function toggleTheme() {
   theme = theme === 'cool' ? 'warm' : 'cool';
   $html.dataset.theme = theme;
-  $cordLabel.textContent = theme === 'cool' ? 'warm' : 'cool';
+  $cordLabel.textContent = 'Pull to shift';
 
   // pull animation
   $cordPull.classList.remove('pulled');
-  void $cordPull.offsetWidth; // reflow
+  void $cordPull.offsetWidth;
   $cordPull.classList.add('pulled');
 }
 
@@ -209,9 +209,28 @@ function buildCards() {
     card.setAttribute('role', 'button');
     card.setAttribute('aria-label', `${p.title} 열기`);
 
+    // 영상/포스터에 아이콘 오버레이
+    const iconOverlay = (p.type === 'video')
+      ? `<div class="card-thumb-icon">
+           <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <circle cx="22" cy="22" r="21" stroke="white" stroke-width="1.5" fill="rgba(0,0,0,.3)"/>
+             <path d="M18 15l14 7-14 7V15z" fill="white"/>
+           </svg>
+         </div>`
+      : (p.type === 'poster')
+      ? `<div class="card-thumb-icon">
+           <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <circle cx="22" cy="22" r="21" stroke="white" stroke-width="1.5" fill="rgba(0,0,0,.3)"/>
+             <path d="M16 16h12v12H16z" stroke="white" stroke-width="1.5" fill="none"/>
+             <path d="M20 20h4v4h-4z" fill="white" opacity=".6"/>
+           </svg>
+         </div>`
+      : '';
+
     card.innerHTML = `
       <div class="card-thumb ${p.thumbClass}">
         <span class="thumb-label">${p.thumbLabel}</span>
+        ${iconOverlay}
       </div>
       <div class="card-body">
         <div class="card-type">${TYPE_KO[p.type]}</div>
@@ -392,6 +411,19 @@ document.addEventListener('keydown', e => {
 /* ══════════════════════════════════════════════════════
    7. NAV SMOOTH SCROLL (anchor links already handled by
       CSS scroll-behavior: smooth, this enhances it)
+══════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════
+   8. SCROLL TO TOP
+══════════════════════════════════════════════════════ */
+
+document.getElementById('scrollTop')?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+/* ══════════════════════════════════════════════════════
+   9. NAV SMOOTH SCROLL
 ══════════════════════════════════════════════════════ */
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
