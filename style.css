@@ -292,12 +292,16 @@ body { overflow-x: hidden; }
   transition: background var(--ts), backdrop-filter var(--ts), color var(--ts);
 }
 
-/* 스크롤 시 반투명 배경 — 쿨/웜 무관한 고정값 */
-.nav.scrolled.on-dark  { background: rgba(8, 10, 18, 0.88);   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-.nav.scrolled.on-light { background: rgba(236, 238, 248, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-/* 텍스트 색 고정 — 라이트/다크 차이만 */
-.nav.on-dark  { color: rgba(215, 218, 232, 0.95); }
-.nav.on-light { color: rgba(14, 16, 30, 0.90); }
+/* 상시 frosted — 섹션에 따라 색이 바뀌지 않음 */
+.nav {
+  background: rgba(10, 12, 24, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.nav.scrolled { background: rgba(10, 12, 24, 0.80); }
+/* 텍스트: 쿨/웜 테마에만 반응, 섹션 무관 */
+:root[data-theme="cool"] .nav { color: rgba(208, 215, 238, 0.92); }
+:root[data-theme="warm"] .nav { color: rgba(220, 206, 184, 0.92); }
 
 /* ✏️ 로고 — 이미지 교체 시 이 스타일 제거 가능 */
 .nav-logo {
@@ -569,10 +573,29 @@ body { overflow-x: hidden; }
   border-radius: 2rem;
   border: 1px solid currentColor;
   color: inherit;
-  opacity: .45;
-  transition: opacity .22s, transform .22s;
+  opacity: .55;
+  position: relative;
+  overflow: hidden;
+  transition: opacity .3s, box-shadow .3s ease;
 }
-.btn-more:hover { opacity: 1; }
+.btn-more > span {
+  position: relative;
+  z-index: 1;
+}
+.btn-more::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 130%;
+  aspect-ratio: 1;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, 112%);
+  transition: transform .65s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.btn-more:hover { opacity: 1; box-shadow: 0 6px 24px var(--accent-glow); }
+.btn-more:hover::before { transform: translate(-50%, 22%); }
 
 
 /* ── Project Card ────────────────────────────────── */
