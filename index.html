@@ -54,11 +54,6 @@
       <div class="blob float-e" style="width:52vw;height:44vw;top:2%;right:-14%;border-radius:62% 38% 52% 48%;"></div>
     </div>
 
-    <!-- ✏️ 후드 실루엣 — sil-art: JS가 SVG 주입 / sil-img: 실제 사진으로 교체 시 src 입력 -->
-    <div class="sil-figure float-b" style="right:-4%; top:-5%;">
-      <div class="sil-art" aria-hidden="true"></div>
-      <img src="" alt="" class="sil-img" aria-hidden="true" />
-    </div>
 
     <div class="content hero-content">
       <!-- ✏️ 히어로 eyebrow 텍스트 -->
@@ -96,11 +91,6 @@
       <div class="blob float-d" style="width:56vw;height:46vw;top:8%;right:-16%;border-radius:52% 48% 42% 58%;"></div>
     </div>
 
-    <!-- ✏️ 후드 실루엣 -->
-    <div class="sil-figure float-f" style="right:-6%; bottom:-8%;">
-      <div class="sil-art" aria-hidden="true"></div>
-      <img src="" alt="" class="sil-img" aria-hidden="true" />
-    </div>
 
     <div class="content about-content">
       <div class="section-num">02</div>
@@ -183,12 +173,6 @@
       <div class="blob float-c" style="width:48vw;height:40vw;top:12%;left:-14%;border-radius:52% 48% 62% 38%;"></div>
     </div>
 
-    <!-- ✏️ 후드 실루엣 -->
-    <div class="sil-figure float-e" style="right:-8%; top:0%;">
-      <div class="sil-art" aria-hidden="true"></div>
-      <img src="" alt="" class="sil-img" aria-hidden="true" />
-    </div>
-
     <div class="content projects-content">
       <div class="section-num">03</div>
       <h2 class="section-title">Projects<span class="accent-dot">.</span></h2>
@@ -228,12 +212,6 @@
       <div class="bub xbd bup2" style="width:13vw;height:13vw;top:-7vw;left:28%;border-radius:54% 46% 58% 42% / 52% 48% 52% 48%;"></div>
       <!-- blob 광원 -->
       <div class="blob float-b" style="width:54vw;height:44vw;bottom:4%;right:-14%;border-radius:58% 42% 52% 48%;"></div>
-    </div>
-
-    <!-- ✏️ 후드 실루엣 -->
-    <div class="sil-figure float-d" style="right:-5%; bottom:-10%;">
-      <div class="sil-art" aria-hidden="true"></div>
-      <img src="" alt="" class="sil-img" aria-hidden="true" />
     </div>
 
     <div class="content contact-content">
@@ -283,6 +261,11 @@
       <button class="modal-close" id="modalClose" aria-label="닫기">&times;</button>
       <div class="modal-inner" id="modalInner"></div>
     </div>
+  </div>
+
+  <!-- ✏️ 스크롤 따라오는 실루엣 — src에 이미지 경로 입력 시 표시됨 -->
+  <div id="silFollow" class="sil-follow" aria-hidden="true">
+    <img src="" alt="" class="sil-img" />
   </div>
 
   <script src="script.js"></script>

@@ -99,6 +99,7 @@ const $modalClose   = document.getElementById('modalClose');
 const $modalInner   = document.getElementById('modalInner');
 const $sections     = document.querySelectorAll('.section');
 const $html         = document.documentElement;
+const $silFollow    = document.getElementById('silFollow');
 
 
 /* ══════════════════════════════════════════════════════
@@ -447,79 +448,22 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 /* ══════════════════════════════════════════════════════
-   10. SILHOUETTE POSES
-   Hero 섹션 = pose 0 (정면 서기) 고정
-   About / Projects / Contact = pose 1~4 중 랜덤 배정
-   새로고침마다 순서가 달라짐
+   10. SCROLL-FOLLOW SILHOUETTE
+   히어로에서 시작해 스크롤 시 함께 따라오는 고정 실루엣
+   ✏️ #silFollow img src에 이미지 경로 입력 시 표시됨
 ══════════════════════════════════════════════════════ */
 
-const SIL_POSES = [
-  /* 0 — 정면 서기 (Hero 고정) */
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 420" fill="currentColor">
-    <ellipse cx="100" cy="72" rx="52" ry="66"/>
-    <path d="M40,130Q30,148,30,168L30,264Q30,276,46,280L80,283L80,300L120,300L120,283L154,280Q170,276,170,264L170,168Q170,148,160,130Z"/>
-    <ellipse cx="18" cy="205" rx="16" ry="78" transform="rotate(-6,18,205)"/>
-    <ellipse cx="182" cy="205" rx="16" ry="78" transform="rotate(6,182,205)"/>
-    <ellipse cx="74" cy="348" rx="18" ry="66"/>
-    <ellipse cx="126" cy="348" rx="18" ry="66"/>
-  </svg>`,
-
-  /* 1 — 뒤로 떠밀림 / 팔 벌림 */
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="currentColor">
-    <g transform="translate(200,148) rotate(22) scale(0.55) translate(-100,-200)">
-      <ellipse cx="100" cy="72" rx="52" ry="66"/>
-      <path d="M40,130Q30,148,30,168L30,255Q30,268,46,272L154,272Q170,268,170,255L170,168Q170,148,160,130Z"/>
-      <ellipse cx="-15" cy="178" rx="78" ry="15"/>
-      <ellipse cx="215" cy="178" rx="78" ry="15"/>
-      <ellipse cx="72" cy="340" rx="15" ry="72" transform="rotate(-22,72,340)"/>
-      <ellipse cx="128" cy="340" rx="15" ry="72" transform="rotate(22,128,340)"/>
-    </g>
-  </svg>`,
-
-  /* 2 — 왼쪽 기울임 / 탐색 */
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 310" fill="currentColor">
-    <g transform="translate(185,155) rotate(-38) scale(0.55) translate(-100,-200)">
-      <ellipse cx="100" cy="72" rx="52" ry="66"/>
-      <path d="M40,130Q30,148,30,168L30,255Q30,268,46,272L154,272Q170,268,170,255L170,168Q170,148,160,130Z"/>
-      <ellipse cx="-25" cy="168" rx="86" ry="15" transform="rotate(-10,-25,168)"/>
-      <ellipse cx="182" cy="210" rx="16" ry="72" transform="rotate(12,182,210)"/>
-      <ellipse cx="68" cy="340" rx="15" ry="70" transform="rotate(18,68,340)"/>
-      <ellipse cx="132" cy="340" rx="15" ry="70" transform="rotate(-8,132,340)"/>
-    </g>
-  </svg>`,
-
-  /* 3 — 웅크림 / 몰입 */
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="currentColor">
-    <ellipse cx="140" cy="44" rx="48" ry="52" transform="rotate(12,140,44)"/>
-    <ellipse cx="128" cy="148" rx="56" ry="72"/>
-    <ellipse cx="64" cy="148" rx="15" ry="60" transform="rotate(25,64,148)"/>
-    <ellipse cx="196" cy="148" rx="15" ry="60" transform="rotate(-25,196,148)"/>
-    <ellipse cx="88" cy="215" rx="18" ry="54" transform="rotate(-48,88,215)"/>
-    <ellipse cx="172" cy="215" rx="18" ry="54" transform="rotate(48,172,215)"/>
-  </svg>`,
-
-  /* 4 — 오른쪽 기울임 / 뻗기 */
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 310" fill="currentColor">
-    <g transform="translate(190,152) rotate(-18) scale(0.55) translate(-100,-200)">
-      <ellipse cx="100" cy="72" rx="52" ry="66"/>
-      <path d="M40,130Q30,148,30,168L30,255Q30,268,46,272L154,272Q170,268,170,255L170,168Q170,148,160,130Z"/>
-      <ellipse cx="182" cy="128" rx="15" ry="82" transform="rotate(-20,182,128)"/>
-      <ellipse cx="18" cy="215" rx="16" ry="72" transform="rotate(8,18,215)"/>
-      <ellipse cx="72" cy="345" rx="15" ry="70" transform="rotate(10,72,345)"/>
-      <ellipse cx="128" cy="345" rx="15" ry="70" transform="rotate(-5,128,345)"/>
-    </g>
-  </svg>`,
-];
-
-(function assignSilhouettes() {
-  const pool = [1, 2, 3, 4].sort(() => Math.random() - 0.5);
-  [
-    { id: 'hero',     pose: 0 },
-    { id: 'about',    pose: pool[0] },
-    { id: 'projects', pose: pool[1] },
-    { id: 'contact',  pose: pool[2] },
-  ].forEach(({ id, pose }) => {
-    const el = document.querySelector(`#${id} .sil-art`);
-    if (el) el.innerHTML = SIL_POSES[pose];
-  });
+(function initSilFollow() {
+  if (!$silFollow) return;
+  let rafSil;
+  function updateSil() {
+    const y = window.scrollY;
+    // 스크롤 내릴수록 살짝 위로 떠오르는 느낌 (최대 40px)
+    const lift = Math.min(y * 0.05, 40);
+    $silFollow.style.transform = `translateY(${-lift}px)`;
+    rafSil = null;
+  }
+  window.addEventListener('scroll', () => {
+    if (!rafSil) rafSil = requestAnimationFrame(updateSil);
+  }, { passive: true });
 })();

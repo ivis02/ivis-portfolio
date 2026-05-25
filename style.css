@@ -199,39 +199,30 @@ body { overflow-x: hidden; }
 .section-dark  .blob { background: var(--blob-d); }
 
 
-/* ── Silhouette Figure ───────────────────────────── */
+/* ── Scroll-Follow Silhouette (fixed, single figure) ── */
 
-.sil-figure {
-  position: absolute;
+.sil-follow {
+  position: fixed;
+  right: -4%;
+  bottom: -2%;
+  width: 36vw;
+  max-width: 540px;
+  min-width: 240px;
   z-index: 0;
   pointer-events: none;
-  width: 55vw;
-  max-width: 720px;
   will-change: transform;
+  animation: floatA 19s ease-in-out infinite;
+  /* 초기에는 숨김 — 이미지 src 입력 시 표시됨 */
 }
 
-/* SVG 실루엣 아트 — JS가 currentColor SVG를 주입함 */
-.sil-art svg {
+.sil-follow .sil-img {
   display: block;
   width: 100%;
   height: auto;
-  fill: currentColor;
-  opacity: 0.32;
+  opacity: 0;
   transition: opacity var(--ts);
 }
-
-/* 실제 사진으로 교체할 경우: img src에 경로 입력 시 자동 표시 */
-.sil-img {
-  display: block;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.section-light .sil-img { opacity: 0; mix-blend-mode: multiply;  }
-.section-dark  .sil-img { opacity: 0; mix-blend-mode: screen;    }
-.sil-img[src]:not([src=""]) { opacity: 0.55; }
+.sil-follow .sil-img[src]:not([src=""]) { opacity: 0.38; }
 
 
 /* ── Float Animations ────────────────────────────── */
@@ -364,8 +355,8 @@ body { overflow-x: hidden; }
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
-  padding-top: 13vh;
-  max-width: 560px;
+  padding-top: 8vh;
+  max-width: 580px;
 }
 
 .hero-eyebrow {
@@ -456,7 +447,7 @@ body { overflow-x: hidden; }
 
 /* ── About ───────────────────────────────────────── */
 
-.about-content { max-width: 600px; }
+.about-content { max-width: 680px; }
 
 .about-bio {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
@@ -656,7 +647,7 @@ body { overflow-x: hidden; }
 
 /* ── Contact ─────────────────────────────────────── */
 
-.contact-content { max-width: 520px; }
+.contact-content { max-width: 620px; }
 
 .contact-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -946,7 +937,6 @@ body { overflow-x: hidden; }
   .nav        { padding: 1.4rem 2.5rem; }
   .content    { padding: 6rem 2.5rem; }
   .theme-cord { right: 1.5rem; }
-  .sil-figure { width: 65vw; }
 }
 
 @media (max-width: 600px) {
@@ -958,7 +948,6 @@ body { overflow-x: hidden; }
   .filter-btn   { font-size: .72rem; padding: .38rem .85rem; }
   .theme-cord   { right: 1rem; }
   .cord-line    { height: 60px; }
-  .sil-figure   { width: 85vw; }
   .modal        { padding: 1rem; }
 }
 
