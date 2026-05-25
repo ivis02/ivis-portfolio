@@ -288,7 +288,7 @@ body { overflow-x: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.6rem 4rem;
+  padding: 1.6rem 5rem;
   transition: background var(--ts), backdrop-filter var(--ts), color var(--ts);
 }
 
@@ -356,7 +356,6 @@ body { overflow-x: hidden; }
   flex-direction: column;
   gap: 1.4rem;
   padding-top: 8vh;
-  max-width: 580px;
 }
 
 .hero-eyebrow {
@@ -447,7 +446,6 @@ body { overflow-x: hidden; }
 
 /* ── About ───────────────────────────────────────── */
 
-.about-content { max-width: 680px; }
 
 .about-bio {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
@@ -647,7 +645,6 @@ body { overflow-x: hidden; }
 
 /* ── Contact ─────────────────────────────────────── */
 
-.contact-content { max-width: 620px; }
 
 .contact-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
