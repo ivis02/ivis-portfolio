@@ -292,10 +292,12 @@ body { overflow-x: hidden; }
   transition: background var(--ts), backdrop-filter var(--ts), color var(--ts);
 }
 
-.nav.scrolled.on-dark  { background: var(--nav-bg);   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-.nav.scrolled.on-light { background: var(--nav-bg-l); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-.nav.on-dark  { color: var(--fg-dark);  }
-.nav.on-light { color: var(--fg-light); }
+/* 스크롤 시 반투명 배경 — 쿨/웜 무관한 고정값 */
+.nav.scrolled.on-dark  { background: rgba(8, 10, 18, 0.88);   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.nav.scrolled.on-light { background: rgba(236, 238, 248, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+/* 텍스트 색 고정 — 라이트/다크 차이만 */
+.nav.on-dark  { color: rgba(215, 218, 232, 0.95); }
+.nav.on-light { color: rgba(14, 16, 30, 0.90); }
 
 /* ✏️ 로고 — 이미지 교체 시 이 스타일 제거 가능 */
 .nav-logo {
@@ -316,7 +318,7 @@ body { overflow-x: hidden; }
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
-  opacity: .48;
+  opacity: .70;
   transition: opacity .22s;
 }
 .nav-links a:hover { opacity: 1; }
@@ -406,16 +408,38 @@ body { overflow-x: hidden; }
   color: var(--bg-light);
   border: none;
   cursor: pointer;
-  transition: transform .25s ease, box-shadow .3s ease, background var(--ts), color var(--ts);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow .3s ease, background var(--ts), color var(--ts);
   width: fit-content;
+}
+/* 텍스트를 fill 위에 유지 */
+.btn-primary > span {
+  position: relative;
+  z-index: 1;
+}
+/* 아래서 올라오는 물 채우기 — 큰 원의 곡선 엣지가 수면처럼 보임 */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 130%;
+  aspect-ratio: 1;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, 112%);
+  transition: transform .65s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .section-dark .btn-primary {
   background: var(--fg-dark);
   color: var(--bg-dark);
 }
+.btn-primary:hover::before {
+  transform: translate(-50%, 22%);
+}
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px var(--accent-glow);
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 
 
@@ -548,7 +572,7 @@ body { overflow-x: hidden; }
   opacity: .45;
   transition: opacity .22s, transform .22s;
 }
-.btn-more:hover { opacity: .85; transform: translateY(-2px); }
+.btn-more:hover { opacity: 1; }
 
 
 /* ── Project Card ────────────────────────────────── */
@@ -645,6 +669,8 @@ body { overflow-x: hidden; }
 
 /* ── Contact ─────────────────────────────────────── */
 
+/* 마지막 섹션 — 풀 뷰포트 강제 없음, 콘텐츠 높이만 */
+#contact { min-height: auto; }
 
 .contact-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -965,10 +991,6 @@ body { overflow-x: hidden; }
 /* blob 광원 */
 [data-inverted] .section-dark  .blob { background: var(--blob-l); }
 [data-inverted] .section-light .blob { background: var(--blob-d); }
-
-/* nav 스크롤 배경 (JS가 on-dark/on-light를 반전 반영해서 클래스 업데이트함) */
-[data-inverted] .nav.scrolled.on-dark  { background: var(--nav-bg-l); }
-[data-inverted] .nav.scrolled.on-light { background: var(--nav-bg);   }
 
 /* 히어로 CTA 버튼 (라이트 → 다크 배경이 되므로 색 반전) */
 [data-inverted] .section-light .btn-primary {
