@@ -11,8 +11,8 @@
   --bg-light: #e7e9f3;
   --fg-dark:  #b8c4dc;
   --fg-light: #191e34;
-  --accent:   #5b6ec4;
-  --accent-glow: rgba(91, 110, 196, 0.22);
+  --accent:   #4a5a84;
+  --accent-glow: rgba(74, 90, 132, 0.22);
   --sil-tint-l: rgba(18, 24, 58, 0.52);
   --sil-tint-d: rgba(155, 172, 220, 0.42);
   /* 버블 — 모두 쿨 tint */
@@ -553,7 +553,7 @@ body { overflow-x: hidden; }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.2rem;
 }
 
@@ -606,7 +606,8 @@ body { overflow-x: hidden; }
   border-radius: .9rem;
   overflow: hidden;
   cursor: pointer;
-  transition: transform .32s ease, box-shadow .32s ease;
+  transition: transform .32s ease, box-shadow .32s ease,
+              opacity .3s ease, visibility .3s ease;
   animation: cardIn .4s ease both;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -619,7 +620,12 @@ body { overflow-x: hidden; }
   transform: translateY(-5px);
   box-shadow: 0 16px 40px var(--card-shadow), 0 0 0 1px var(--accent-glow);
 }
-.project-card.hide { display: none; }
+/* display:none 대신 visibility로 — 공간 유지하면서 숨김 */
+.project-card.hide {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
 
 .card-thumb {
   width: 100%;
@@ -1000,6 +1006,7 @@ body { overflow-x: hidden; }
   .nav        { padding: 1.4rem 2.5rem; }
   .content    { padding: 6rem 2.5rem; }
   .theme-cord { right: 1.5rem; }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
