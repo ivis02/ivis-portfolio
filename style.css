@@ -6,27 +6,18 @@
 /* ── CSS Variables: Cool Theme ─────────────────────── */
 
 :root[data-theme="cool"] {
-  /* 쿨 팔레트 — 다크·라이트 모두 한색 계열 */
   --bg-dark:  #0b0d16;
   --bg-light: #e7e9f3;
   --fg-dark:  #b8c4dc;
   --fg-light: #191e34;
   --accent:   #4a5a84;
   --accent-glow: rgba(74, 90, 132, 0.22);
-  --sil-tint-l: rgba(18, 24, 58, 0.52);
-  --sil-tint-d: rgba(155, 172, 220, 0.42);
-  /* 버블 — 모두 쿨 tint */
   --bub-bg-l:  rgba(120, 132, 200, 0.10);
   --bub-bd-l:  rgba(120, 132, 200, 0.18);
   --bub-bg-d:  rgba(100, 120, 195, 0.08);
   --bub-bd-d:  rgba(100, 120, 195, 0.13);
-  /* blob */
   --blob-l: rgba(91, 110, 196, 0.055);
   --blob-d: rgba(60, 80, 160, 0.065);
-  /* nav */
-  --nav-bg:   rgba(11, 13, 22, 0.82);
-  --nav-bg-l: rgba(231, 233, 243, 0.82);
-  /* cord */
   --cord-c: rgba(45, 55, 105, 0.55);
   /* card */
   --card-bg:     rgba(255,255,255,0.68);
@@ -58,8 +49,6 @@
   --bub-bd-d:  rgba(180, 148, 96, 0.12);
   --blob-l: rgba(154, 124, 80, 0.055);
   --blob-d: rgba(120, 90, 44, 0.065);
-  --nav-bg:   rgba(14, 11, 8, 0.82);
-  --nav-bg-l: rgba(238, 235, 227, 0.82);
   --cord-c: rgba(90, 68, 36, 0.55);
   --card-bg:     rgba(255,255,255,0.62);
   --card-border: rgba(34, 26, 16, 0.07);
@@ -89,7 +78,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   /* 페이지 진입 페이드인 */
-  animation: pageIn 0.2s ease both;
+  animation: pageIn 0.15s ease both;
 }
 
 @keyframes pageIn {
@@ -297,14 +286,10 @@ a { color: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 1.6rem 5rem;
-  transition: background var(--ts), backdrop-filter var(--ts), color var(--ts);
-}
-
-/* 상시 frosted — 섹션에 따라 색이 바뀌지 않음 */
-.nav {
   background: rgba(10, 12, 24, 0.42);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  transition: background var(--ts);
 }
 .nav.scrolled { background: rgba(10, 12, 24, 0.80); }
 /* 텍스트: 쿨/웜 테마에만 반응, 섹션 무관 */

@@ -91,7 +91,6 @@ const TYPE_KO = {
 const $nav          = document.getElementById('nav');
 const $cordPull     = document.getElementById('cordPull');
 const $themeCord    = document.getElementById('themeCord');
-const $cordLabel    = document.getElementById('cordLabel');
 const $projectsGrid = document.getElementById('projectsGrid');
 const $filterBtns   = document.querySelectorAll('.filter-btn');
 const $modal        = document.getElementById('modal');
@@ -475,20 +474,3 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 })();
 
 
-/* ══════════════════════════════════════════════════════
-   11. PAGE TRANSITION
-   링크 클릭 시 페이드아웃 → 이동 (CSS pageIn 페이드인과 쌍)
-══════════════════════════════════════════════════════ */
-
-document.querySelectorAll('a[href]').forEach(link => {
-  const href = link.getAttribute('href');
-  // 앵커, 외부 링크, 새 탭은 제외
-  if (!href || href.startsWith('#') || href.startsWith('mailto:')
-      || href.startsWith('http') || link.target === '_blank') return;
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    document.body.style.transition = 'opacity 0.12s ease';
-    document.body.style.opacity = '0';
-    setTimeout(() => { window.location.href = href; }, 130);
-  });
-});
