@@ -123,6 +123,15 @@ const $sections     = document.querySelectorAll('.section');
 const $html         = document.documentElement;
 const $silFollow    = document.getElementById('silFollow');
 
+const SIL_IMAGES = [
+  'images/human/bd8ecb96-d311-4496-8b0a-0cbcc45b53d8.png',
+  'images/human/0cccc30a-5218-4842-9ef0-de531a0a8547.png',
+  'images/human/e6f3eb23-3d06-45d5-a26a-5464acbd3169.png',
+  'images/human/78c5bd83-aa8d-437f-8cdc-d485f1928667.png',
+  'images/human/076c2c14-6d92-4e08-9d25-d58bd2f42c23.png',
+];
+let lastSectionIdx = -1;
+
 
 /* ══════════════════════════════════════════════════════
    1. THEME TOGGLE (Cord)
@@ -161,10 +170,11 @@ function onScroll() {
 
   // detect which section is dominant
   if (!$sections.length) return;
-  let active = $sections[0];
-  $sections.forEach(sec => {
-    if (y + window.innerHeight * 0.45 >= sec.offsetTop) active = sec;
+  let activeIdx = 0;
+  $sections.forEach((sec, i) => {
+    if (y + window.innerHeight * 0.45 >= sec.offsetTop) activeIdx = i;
   });
+  const active = $sections[activeIdx];
 
   // data-inverted 상태일 때 dark/light 판단을 반전
   const isDark = active.classList.contains('section-dark');
@@ -172,6 +182,12 @@ function onScroll() {
 
   $nav.classList.toggle('on-dark',   effectivelyDark);
   $nav.classList.toggle('on-light', !effectivelyDark);
+
+  // 섹션 전환 시 실루엣 이미지 교체
+  if (activeIdx !== lastSectionIdx) {
+    lastSectionIdx = activeIdx;
+    swapSilImage(activeIdx);
+  }
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
@@ -522,16 +538,32 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 /* ══════════════════════════════════════════════════════
    10. SCROLL-FOLLOW SILHOUETTE
-   히어로에서 시작해 스크롤 시 함께 따라오는 고정 실루엣
-   ✏️ #silFollow img src에 이미지 경로 입력 시 표시됨
+   섹션이 바뀔 때마다 다른 실루엣 이미지로 교체됨
 ══════════════════════════════════════════════════════ */
+
+function swapSilImage(idx) {
+  const img = $silFollow?.querySelector('.sil-img');
+  if (!img) return;
+  const next = SIL_IMAGES[idx % SIL_IMAGES.length];
+  if (img.getAttribute('src') === next) return;
+
+  img.style.transition = 'opacity 0.3s ease';
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = next;
+    img.style.opacity = '0.38';
+    setTimeout(() => {
+      img.style.transition = '';
+      img.style.opacity = '';
+    }, 320);
+  }, 310);
+}
 
 (function initSilFollow() {
   if (!$silFollow) return;
   let rafSil;
   function updateSil() {
     const y = window.scrollY;
-    // 스크롤 내릴수록 살짝 위로 떠오르는 느낌 (최대 40px)
     const lift = Math.min(y * 0.05, 40);
     $silFollow.style.transform = `translateY(${-lift}px)`;
     rafSil = null;
