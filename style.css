@@ -76,7 +76,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+/* 가로 스크롤 원천 차단 — html+body 모두 설정해야
+   fixed 요소가 viewport 바깥으로 나가도 scrollWidth에 영향 없음 */
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: 'DM Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
@@ -84,6 +86,13 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* 페이지 진입 페이드인 */
+  animation: pageIn 0.38s ease both;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 ::selection { background: var(--accent-glow); }
@@ -102,9 +111,6 @@ a { color: inherit; }
   overflow: visible;
   transition: background-color var(--ts), color var(--ts);
 }
-
-/* 가로 스크롤만 방지 */
-body { overflow-x: hidden; }
 
 .section-dark  { background-color: var(--bg-dark);  color: var(--fg-dark);  }
 .section-light { background-color: var(--bg-light); color: var(--fg-light); }
@@ -581,7 +587,9 @@ body { overflow-x: hidden; }
 .btn-more > span {
   position: relative;
   z-index: 1;
+  transition: color .35s ease;
 }
+.btn-more:hover > span { color: #fff; }
 .btn-more::before {
   content: '';
   position: absolute;
