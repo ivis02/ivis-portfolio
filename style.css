@@ -214,16 +214,15 @@ a { color: inherit; }
 
 .sil-follow {
   position: fixed;
-  right: -4%;
-  bottom: -2%;
-  width: 36vw;
-  max-width: 540px;
-  min-width: 240px;
+  right: 4%;
+  bottom: 3%;
+  width: 52vw;
+  max-width: 740px;
+  min-width: 300px;
   z-index: 0;
   pointer-events: none;
   will-change: transform;
   animation: floatA 19s ease-in-out infinite;
-  /* 초기에는 숨김 — 이미지 src 입력 시 표시됨 */
 }
 
 .sil-follow .sil-img {

@@ -124,11 +124,11 @@ const $html         = document.documentElement;
 const $silFollow    = document.getElementById('silFollow');
 
 const SIL_IMAGES = [
-  'images/human/bd8ecb96-d311-4496-8b0a-0cbcc45b53d8.png',
+  'images/human/hero.png',
   'images/human/0cccc30a-5218-4842-9ef0-de531a0a8547.png',
-  'images/human/e6f3eb23-3d06-45d5-a26a-5464acbd3169.png',
   'images/human/78c5bd83-aa8d-437f-8cdc-d485f1928667.png',
   'images/human/076c2c14-6d92-4e08-9d25-d58bd2f42c23.png',
+  'images/human/bd8ecb96-d311-4496-8b0a-0cbcc45b53d8.png',
 ];
 let lastSectionIdx = -1;
 
