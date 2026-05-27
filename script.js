@@ -106,16 +106,16 @@ const $silFollow    = document.getElementById('silFollow');
    1. THEME TOGGLE (Cord)
 ══════════════════════════════════════════════════════ */
 
-let inverted = false;
+// localStorage에서 초기 상태 복원 (head 인라인 스크립트가 이미 DOM에 적용했으므로 변수만 맞춤)
+let inverted = localStorage.getItem('ivis-theme') === 'warm';
 
 function toggleTheme() {
   inverted = !inverted;
 
   // 쿨(기본) ↔ 웜+반전 동시 전환
-  // 기본: cool 팔레트, 섹션 순서 그대로
-  // 반전: warm 팔레트, 섹션 dark/light 순서 뒤집힘
   $html.dataset.theme = inverted ? 'warm' : 'cool';
   $html.toggleAttribute('data-inverted', inverted);
+  localStorage.setItem('ivis-theme', inverted ? 'warm' : 'cool');
 
   $themeCord.classList.remove('pulling');
   void $themeCord.offsetWidth;
@@ -271,10 +271,16 @@ function handleCardClick(p) {
 /* ── Filter ───────────────────────────────────────── */
 
 function filterCards(filter) {
-  document.querySelectorAll('.project-card').forEach(card => {
-    const match = filter === 'all' || card.dataset.type === filter;
-    card.classList.toggle('hide', !match);
-  });
+  const cards = [...document.querySelectorAll('.project-card')];
+  const visible = cards.filter(c => filter === 'all' || c.dataset.type === filter);
+  const hidden  = cards.filter(c => filter !== 'all' && c.dataset.type !== filter);
+  // 이미 보이는 카드는 재배치 시 애니메이션 재실행 방지
+  visible.forEach(c => { if (!c.classList.contains('hide')) c.classList.add('no-anim'); });
+  // 보이는 카드를 앞으로, 숨길 카드를 뒤로 DOM 재배치
+  [...visible, ...hidden].forEach(c => $projectsGrid.appendChild(c));
+  visible.forEach(c => c.classList.remove('hide'));
+  // 숨겨지는 카드는 no-anim 제거 — 다음에 다시 표시될 때 애니메이션 재생
+  hidden.forEach(c => { c.classList.add('hide'); c.classList.remove('no-anim'); });
 }
 
 $filterBtns.forEach(btn => {

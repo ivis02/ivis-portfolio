@@ -2,6 +2,8 @@
 <html lang="ko" data-theme="cool">
 <head>
   <meta charset="UTF-8" />
+  <!-- 테마 깜빡임 방지: CSS 로드 전에 저장된 테마 적용 -->
+  <script>try{if(localStorage.getItem('ivis-theme')==='warm'){document.documentElement.dataset.theme='warm';document.documentElement.setAttribute('data-inverted','');}}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- ✏️ 탭 제목 -->
   <title>ivis — portfolio</title>

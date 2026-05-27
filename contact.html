@@ -2,6 +2,7 @@
 <html lang="ko" data-theme="cool">
 <head>
   <meta charset="UTF-8" />
+  <script>try{if(localStorage.getItem('ivis-theme')==='warm'){document.documentElement.dataset.theme='warm';document.documentElement.setAttribute('data-inverted','');}}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ivis — Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -120,9 +121,12 @@
 
       <!-- ✏️ 폼 — Formspree 등 외부 서비스 연동 시 action 속성 추가 -->
       <form class="contact-form" action="#" onsubmit="return false;">
-        <input type="text" name="name" placeholder="이름" autocomplete="name" />
-        <input type="email" name="email" placeholder="이메일" autocomplete="email" />
-        <textarea name="message" placeholder="메시지를 남겨주세요."></textarea>
+        <label class="sr-only" for="contactName">이름</label>
+        <input id="contactName" type="text" name="name" placeholder="이름" autocomplete="name" />
+        <label class="sr-only" for="contactEmail">이메일</label>
+        <input id="contactEmail" type="email" name="email" placeholder="이메일" autocomplete="email" />
+        <label class="sr-only" for="contactMessage">메시지</label>
+        <textarea id="contactMessage" name="message" placeholder="메시지를 남겨주세요."></textarea>
         <button type="submit" class="btn-send"><span>보내기 &rarr;</span></button>
       </form>
 
