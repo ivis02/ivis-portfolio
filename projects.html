@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="cool">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ivis — Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ Theme Cord ══ -->
+  <div class="theme-cord" id="themeCord">
+    <div class="cord-line"></div>
+    <button class="cord-knob" id="cordPull" aria-label="색온도 전환 (cool ↔ warm)">
+      <span class="cord-dot"></span>
+    </button>
+    <span class="cord-label" id="cordLabel">Pull to shift</span>
+  </div>
+
+  <!-- ══ Navigation ══ -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html">ivis</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ Projects ══ -->
+  <section class="section section-light" style="align-items:flex-start;">
+    <div class="content projects-content">
+      <div class="section-num">03</div>
+      <h1 class="section-title">Projects<span class="accent-dot">.</span></h1>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" role="tablist" aria-label="프로젝트 카테고리 필터">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">전체</button>
+        <button class="filter-btn" data-filter="website" role="tab" aria-selected="false">웹사이트</button>
+        <button class="filter-btn" data-filter="video" role="tab" aria-selected="false">영상</button>
+        <button class="filter-btn" data-filter="cardnews" role="tab" aria-selected="false">카드뉴스</button>
+        <button class="filter-btn" data-filter="poster" role="tab" aria-selected="false">포스터</button>
+      </div>
+
+      <!-- Cards rendered by script.js -->
+      <div class="projects-grid" id="projectsGrid"></div>
+
+      <div class="projects-more">
+        <!-- ✏️ 링크나 다른 동작으로 교체 가능 -->
+        <a href="#" class="btn-more"><span>더 많은 작업물 보기 &rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Modal ══ -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="작업물 상세보기" hidden>
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose" aria-label="닫기">&times;</button>
+      <div class="modal-inner" id="modalInner"></div>
+    </div>
+  </div>
+
+  <!-- 스크롤 따라오는 실루엣 자리 -->
+  <div id="silFollow" class="sil-follow" aria-hidden="true">
+    <img src="" alt="" class="sil-img" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1007,6 +1007,8 @@ body { overflow-x: hidden; }
   .content    { padding: 6rem 2.5rem; }
   .theme-cord { right: 1.5rem; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  /* 태블릿 이하: visibility 대신 display:none — 빈 슬롯 숨김 */
+  .project-card.hide { display: none; visibility: visible; opacity: 1; }
 }
 
 @media (max-width: 600px) {

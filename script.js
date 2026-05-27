@@ -139,6 +139,7 @@ function onScroll() {
   $nav.classList.toggle('scrolled', y > 60);
 
   // detect which section is dominant
+  if (!$sections.length) return;
   let active = $sections[0];
   $sections.forEach(sec => {
     if (y + window.innerHeight * 0.45 >= sec.offsetTop) active = sec;
@@ -210,6 +211,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 ══════════════════════════════════════════════════════ */
 
 function buildCards() {
+  if (!$projectsGrid) return;
   $projectsGrid.innerHTML = '';
   PROJECTS.forEach((p, i) => {
     const card = document.createElement('article');
@@ -288,7 +290,7 @@ $filterBtns.forEach(btn => {
   });
 });
 
-buildCards();
+if ($projectsGrid) buildCards();
 
 
 /* ══════════════════════════════════════════════════════
@@ -298,6 +300,7 @@ buildCards();
 let sliderIndex = 0;
 
 function openModal(p) {
+  if (!$modal || !$modalInner) return;
   $modalInner.innerHTML = buildModalContent(p);
   $modal.removeAttribute('hidden');
   document.body.style.overflow = 'hidden';
@@ -313,6 +316,7 @@ function openModal(p) {
 }
 
 function closeModal() {
+  if (!$modal) return;
   $modal.setAttribute('hidden', '');
   document.body.style.overflow = '';
   // stop any playing video
@@ -379,7 +383,7 @@ function buildModalContent(p) {
 }
 
 /* Slider controls (event delegation) */
-$modalInner.addEventListener('click', e => {
+$modalInner?.addEventListener('click', e => {
   if (e.target.closest('#sliderPrev')) moveSlider(-1);
   if (e.target.closest('#sliderNext')) moveSlider(+1);
 });
@@ -411,6 +415,7 @@ $modalClose?.addEventListener('click', closeModal);
 $modalOverlay?.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', e => {
+  if (!$modal) return;
   if (e.key === 'Escape' && !$modal.hasAttribute('hidden')) closeModal();
   // Keyboard slider navigation
   if ($modal.hasAttribute('hidden')) return;
