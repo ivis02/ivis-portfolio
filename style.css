@@ -78,7 +78,9 @@
 
 /* 가로 스크롤 원천 차단 — html+body 모두 설정해야
    fixed 요소가 viewport 바깥으로 나가도 scrollWidth에 영향 없음 */
-html { scroll-behavior: smooth; overflow-x: hidden; }
+/* scrollbar-gutter: stable — 스크롤바 유무와 무관하게 레이아웃 너비 고정
+   (페이지마다 fixed 요소 위치가 달라지는 현상 방지) */
+html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
 
 body {
   font-family: 'DM Sans', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
@@ -87,7 +89,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   /* 페이지 진입 페이드인 */
-  animation: pageIn 0.38s ease both;
+  animation: pageIn 0.2s ease both;
 }
 
 @keyframes pageIn {

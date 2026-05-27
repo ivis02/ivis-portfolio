@@ -487,8 +487,8 @@ document.querySelectorAll('a[href]').forEach(link => {
       || href.startsWith('http') || link.target === '_blank') return;
   link.addEventListener('click', e => {
     e.preventDefault();
-    document.body.style.transition = 'opacity 0.25s ease';
+    document.body.style.transition = 'opacity 0.12s ease';
     document.body.style.opacity = '0';
-    setTimeout(() => { window.location.href = href; }, 260);
+    setTimeout(() => { window.location.href = href; }, 130);
   });
 });
