@@ -90,6 +90,7 @@ const TYPE_KO = {
 
 const $nav          = document.getElementById('nav');
 const $cordPull     = document.getElementById('cordPull');
+const $themeCord    = document.getElementById('themeCord');
 const $cordLabel    = document.getElementById('cordLabel');
 const $projectsGrid = document.getElementById('projectsGrid');
 const $filterBtns   = document.querySelectorAll('.filter-btn');
@@ -117,9 +118,9 @@ function toggleTheme() {
   $html.dataset.theme = inverted ? 'warm' : 'cool';
   $html.toggleAttribute('data-inverted', inverted);
 
-  $cordPull.classList.remove('pulled');
-  void $cordPull.offsetWidth;
-  $cordPull.classList.add('pulled');
+  $themeCord.classList.remove('pulling');
+  void $themeCord.offsetWidth;
+  $themeCord.classList.add('pulling');
 
   onScroll();
 }

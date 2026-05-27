@@ -27,7 +27,7 @@
   --nav-bg:   rgba(11, 13, 22, 0.82);
   --nav-bg-l: rgba(231, 233, 243, 0.82);
   /* cord */
-  --cord-c: rgba(25, 30, 52, 0.22);
+  --cord-c: rgba(45, 55, 105, 0.55);
   /* card */
   --card-bg:     rgba(255,255,255,0.68);
   --card-border: rgba(25, 30, 52, 0.07);
@@ -60,7 +60,7 @@
   --blob-d: rgba(120, 90, 44, 0.065);
   --nav-bg:   rgba(14, 11, 8, 0.82);
   --nav-bg-l: rgba(238, 235, 227, 0.82);
-  --cord-c: rgba(34, 26, 16, 0.22);
+  --cord-c: rgba(90, 68, 36, 0.55);
   --card-bg:     rgba(255,255,255,0.62);
   --card-border: rgba(34, 26, 16, 0.07);
   --card-shadow: rgba(44, 32, 16, 0.07);
@@ -692,8 +692,8 @@ body { overflow-x: hidden; }
 
 /* ── Contact ─────────────────────────────────────── */
 
-/* 마지막 섹션 — 풀 뷰포트 강제 없음, 콘텐츠 높이만 */
-#contact { min-height: auto; }
+/* 마지막 섹션 — scene inset이 아래로 넘치지 않도록 clip */
+#contact { min-height: auto; overflow: hidden; }
 
 .contact-sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
@@ -773,59 +773,76 @@ body { overflow-x: hidden; }
 }
 
 .cord-line {
-  width: 1px;
+  width: 1.5px;
   height: 80px;
   background: var(--cord-c);
+  transform-origin: top center;
   transition: background var(--ts);
 }
 
 .cord-knob {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 1px solid var(--cord-c);
-  background: rgba(128,128,128,.08);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  border: 1.5px solid var(--cord-c);
+  background: var(--accent);
+  opacity: 0.72;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color var(--ts), transform .14s ease, background .2s;
+  transition: border-color var(--ts), opacity .2s, background var(--ts),
+              box-shadow var(--ts);
+  box-shadow: 0 2px 12px var(--accent-glow);
   flex-shrink: 0;
 }
-.cord-knob:hover  { transform: scale(1.2); }
-.cord-knob:active { transform: scale(.85) translateY(4px); }
-.cord-knob.pulled { animation: knobPull .22s ease; }
-@keyframes knobPull {
-  0%   { transform: scale(1) translateY(0); }
-  40%  { transform: scale(.85) translateY(7px); }
-  100% { transform: scale(1) translateY(0); }
+.cord-knob:hover  { opacity: 1; transform: scale(1.12); }
+.cord-knob:active { transform: scale(.88) translateY(4px); }
+
+/* 당김 — 노브가 아닌 부모에 클래스 추가해서 라인도 같이 움직임 */
+.theme-cord.pulling .cord-line {
+  animation: linePull .55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.theme-cord.pulling .cord-knob {
+  animation: knobBounce .55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes linePull {
+  0%   { transform: scaleY(1); }
+  28%  { transform: scaleY(1.32); }
+  58%  { transform: scaleY(0.94); }
+  80%  { transform: scaleY(1.06); }
+  100% { transform: scaleY(1); }
+}
+@keyframes knobBounce {
+  0%   { transform: translateY(0); }
+  28%  { transform: translateY(16px); }
+  58%  { transform: translateY(-3px); }
+  78%  { transform: translateY(5px); }
+  100% { transform: translateY(0); }
 }
 
 .cord-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--accent);
-  transition: background var(--ts);
+  background: rgba(255,255,255,0.7);
+  flex-shrink: 0;
 }
 
 .cord-label {
-  margin-top: .55rem;
-  font-size: .55rem;
-  letter-spacing: .2em;
+  margin-top: .6rem;
+  font-size: .52rem;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  opacity: .3;
+  opacity: .5;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   user-select: none;
-  color: var(--cord-c);
-  transition: color var(--ts);
-  /* ↓ 색온도에 따라 라이트/다크 절충 */
-  color: var(--fg-light);
+  color: rgba(200, 210, 235, 0.8);
+  transition: color var(--ts), opacity .2s;
 }
-.section-dark ~ * .cord-label { color: var(--fg-dark); }
+:root[data-theme="warm"] .cord-label { color: rgba(210, 190, 155, 0.8); }
+.cord-label:hover { opacity: .85; }
 
 
 /* ── Modal ───────────────────────────────────────── */
