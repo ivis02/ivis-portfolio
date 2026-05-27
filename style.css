@@ -815,24 +815,24 @@ a { color: inherit; }
 }
 
 .cord-knob {
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 1.5px solid var(--cord-c);
   background: var(--accent);
-  opacity: 0.72;
+  opacity: 0.55;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color var(--ts), opacity .2s, background var(--ts),
-              box-shadow var(--ts);
-  box-shadow: 0 2px 12px var(--accent-glow);
+              box-shadow var(--ts), transform .22s ease;
+  box-shadow: 0 2px 10px var(--accent-glow);
   flex-shrink: 0;
 }
-.cord-knob:hover       { opacity: 1; transform: scale(1.12); }
+.cord-knob:hover       { opacity: 1; transform: scale(1.6); box-shadow: 0 4px 16px var(--accent-glow); }
 .cord-knob:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.cord-knob:active      { transform: scale(.88) translateY(4px); }
+.cord-knob:active      { opacity: 1; transform: scale(1.15) translateY(3px); }
 
 /* 당김 — 노브가 아닌 부모에 클래스 추가해서 라인도 같이 움직임 */
 .theme-cord.pulling .cord-line {
@@ -843,16 +843,16 @@ a { color: inherit; }
 }
 @keyframes linePull {
   0%   { transform: scaleY(1); }
-  28%  { transform: scaleY(1.32); }
-  58%  { transform: scaleY(0.94); }
-  80%  { transform: scaleY(1.06); }
+  28%  { transform: scaleY(1.25); }  /* 80px × 0.25 = 20px 늘어남 */
+  58%  { transform: scaleY(0.95); }
+  80%  { transform: scaleY(1.04); }
   100% { transform: scaleY(1); }
 }
 @keyframes knobBounce {
   0%   { transform: translateY(0); }
-  28%  { transform: translateY(16px); }
-  58%  { transform: translateY(-3px); }
-  78%  { transform: translateY(5px); }
+  28%  { transform: translateY(20px); }  /* 선이 늘어난 만큼 동일하게 이동 */
+  58%  { transform: translateY(-4px); }
+  78%  { transform: translateY(4px); }
   100% { transform: translateY(0); }
 }
 
