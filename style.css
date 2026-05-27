@@ -663,6 +663,14 @@ a { color: inherit; }
   justify-content: center;
   overflow: hidden;
   position: relative;
+  transition: background-position .4s ease;
+}
+/* 실제 이미지가 있는 카드 — 호버 시 살짝 줌 */
+.card-thumb[style*="background-image"] {
+  background-position: top center;
+}
+.project-card:hover .card-thumb[style*="background-image"] {
+  background-size: 105% !important;
 }
 .thumb-label {
   font-size: .65rem;
@@ -970,6 +978,18 @@ a { color: inherit; }
   text-transform: uppercase;
   color: rgba(255,255,255,.26);
 }
+/* 실제 이미지 슬라이드 */
+.slider-slide--img {
+  aspect-ratio: unset;
+  background: #000;
+  max-height: 72vh;
+}
+.slider-slide--img img {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+}
 .slider-controls {
   display: flex;
   justify-content: center;
@@ -1011,6 +1031,16 @@ a { color: inherit; }
   text-transform: uppercase;
   color: rgba(255,255,255,.26);
 }
+.modal-poster--img {
+  aspect-ratio: unset;
+  background: #000;
+}
+.modal-poster--img img {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
 
 .modal-info {
   padding: 1.4rem 2rem 1.8rem;
@@ -1026,6 +1056,113 @@ a { color: inherit; }
   font-size: .88rem;
   opacity: .52;
   line-height: 1.6;
+}
+
+/* ── Website 상세 모달 (Notion 스타일) ────────────── */
+
+.modal-hero-img {
+  width: 100%;
+  height: 260px;
+  background-size: cover;
+  background-position: top center;
+  flex-shrink: 0;
+}
+
+.modal-detail {
+  padding: 2rem 2.4rem 2.8rem;
+  color: #c2cce0;
+}
+
+.modal-detail-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-detail-tag {
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: .85;
+}
+
+.modal-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: .45rem 1.2rem;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-decoration: none;
+  border-radius: 2rem;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.7);
+  position: relative;
+  overflow: hidden;
+  transition: color .3s, box-shadow .3s;
+}
+.modal-visit-btn > span { position: relative; z-index: 1; }
+.modal-visit-btn::before {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 0;
+  width: 130%; aspect-ratio: 1;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, 112%);
+  transition: transform .55s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.modal-visit-btn:hover::before { transform: translate(-50%, 22%); }
+.modal-visit-btn:hover { color: #fff; box-shadow: 0 4px 18px var(--accent-glow); }
+
+.modal-detail-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  color: #e8edf8;
+}
+
+.modal-section {
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.modal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.modal-section-label {
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .38;
+  margin-bottom: .85rem;
+  font-weight: 400;
+  color: #c2cce0;
+}
+
+.modal-section-body {
+  font-size: .9rem;
+  line-height: 1.85;
+  opacity: .65;
+  font-weight: 300;
+}
+
+.modal-roles {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.modal-roles li {
+  font-size: .75rem;
+  letter-spacing: .06em;
+  padding: .35rem .9rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.7);
 }
 
 

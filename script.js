@@ -13,20 +13,24 @@ const PROJECTS = [
   {
     id: 1,
     type: 'website',
-    title: 'Atmosphere',
-    desc: '스크롤 기반 인터랙티브 웹 경험 — 브랜드 스토리텔링 구현',
-    // ✏️ 실제 URL로 교체
-    link: '#',
+    title: 'Hotel Nongshim',
+    desc: '호텔농심 웹사이트 리뉴얼 — 객실·레스토랑·스파 브랜드 경험 구현',
+    link: 'https://ivis02.github.io/hotel-site/index.html',
+    img: 'images/web/hotel-nongshim.png',
+    detail: '호텔농심의 브랜드 아이덴티티를 디지털 환경에서 재해석한 웹 리뉴얼 프로젝트입니다. 고급스러운 호텔의 분위기를 온라인에서도 온전히 경험할 수 있도록 비주얼과 UX를 전면 재설계했습니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+    roles: ['UI/UX 디자인', '퍼블리싱 (HTML / CSS / JS)', '반응형 레이아웃', '인터랙션 구현'],
     thumbClass: 'thumb-website',
     thumbLabel: 'Website',
   },
   {
     id: 2,
     type: 'website',
-    title: 'Driftline',
-    desc: '브랜드 아이덴티티 웹사이트 — 반응형 레이아웃 및 CSS 애니메이션',
-    // ✏️ 실제 URL로 교체
-    link: '#',
+    title: 'Twoem Steel',
+    desc: '투엠스틸 기업 웹사이트 — 팀 협업 프로젝트, 반응형 레이아웃',
+    link: 'https://shinsoo59.github.io/TwoemSteel/',
+    img: 'images/web/TwoemSteel.png',
+    detail: '철강 전문 기업 투엠스틸의 공식 웹사이트 구축 팀 프로젝트입니다. 기업 이미지에 맞는 견고하고 신뢰감 있는 디자인을 목표로, 제품 소개 및 회사 정보를 효과적으로 전달하는 구조를 설계했습니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    roles: ['UI 디자인', '퍼블리싱 (HTML / CSS)', '팀 협업 · 역할 분담'],
     thumbClass: 'thumb-website',
     thumbLabel: 'Website',
   },
@@ -36,43 +40,61 @@ const PROJECTS = [
     title: 'Void Motion',
     desc: '브랜드 모션 그래픽 릴 — After Effects 제작',
     // ✏️ 영상 URL 교체: mp4 직링크 또는 YouTube embed URL
-    // YouTube embed 예시: 'https://www.youtube.com/embed/VIDEO_ID'
     videoSrc: '',
-    isEmbed: false, // ✏️ YouTube embed 사용 시 true
+    isEmbed: false,
     thumbClass: 'thumb-video',
     thumbLabel: 'Video',
   },
   {
     id: 4,
     type: 'cardnews',
-    title: 'Brand Story',
-    desc: '브랜드 스토리 카드뉴스 — SNS 배포용 5매 구성, 망고보드 제작',
-    slides: 5, // ✏️ 슬라이드 수 (실제 이미지 연결 전 더미 표시용)
+    title: '연제고분 판타지축제',
+    desc: '연제고분 판타지축제 행사 카드뉴스 — 9매 구성, 망고보드 제작',
+    img: 'images/cardnews/260408_연제고분판타지축제_카드뉴스_이미소/1.png',
+    images: Array.from({length: 9}, (_, i) =>
+      `images/cardnews/260408_연제고분판타지축제_카드뉴스_이미소/${i + 1}.png`),
     thumbClass: 'thumb-cardnews',
     thumbLabel: 'Card News',
   },
   {
     id: 5,
     type: 'cardnews',
-    title: 'Visual Essay',
-    desc: '시각 에세이 카드뉴스 — Illustrator + 망고보드 제작',
-    slides: 4,
+    title: '주간카드뉴스 4월 3주차',
+    desc: '주간 SNS 카드뉴스 — 6매 구성, 망고보드 제작',
+    img: 'images/cardnews/주간카드뉴스_4월_3주차_이미소/1.png',
+    images: Array.from({length: 6}, (_, i) =>
+      `images/cardnews/주간카드뉴스_4월_3주차_이미소/${i + 1}.png`),
     thumbClass: 'thumb-cardnews',
     thumbLabel: 'Card News',
   },
   {
     id: 6,
-    type: 'poster',
-    title: 'Nocturne',
-    desc: '공연 포스터 — Illustrator 제작, A2 사이즈',
-    thumbClass: 'thumb-poster',
-    thumbLabel: 'Poster',
+    type: 'cardnews',
+    title: '주간카드뉴스 4월 4주차',
+    desc: '주간 SNS 카드뉴스 — 6매 구성, 망고보드 제작',
+    img: 'images/cardnews/주간카드뉴스_4월_4주차/1.png',
+    images: Array.from({length: 6}, (_, i) =>
+      `images/cardnews/주간카드뉴스_4월_4주차/${i + 1}.png`),
+    thumbClass: 'thumb-cardnews',
+    thumbLabel: 'Card News',
   },
   {
     id: 7,
+    type: 'cardnews',
+    title: '카드뉴스 5월 1주차',
+    desc: '주간 SNS 카드뉴스 — 4매 구성, 망고보드 제작',
+    img: 'images/cardnews/카드뉴스_5월_1주차/1.png',
+    images: Array.from({length: 4}, (_, i) =>
+      `images/cardnews/카드뉴스_5월_1주차/${i + 1}.png`),
+    thumbClass: 'thumb-cardnews',
+    thumbLabel: 'Card News',
+  },
+  {
+    id: 8,
     type: 'poster',
-    title: 'Liminal',
-    desc: '전시 기획 포스터 — Photoshop 제작',
+    title: 'Vaundy Live in Seoul',
+    desc: '공연 포스터 — Photoshop 제작',
+    img: 'images/poster/0a9ed032bc351415.png',
     thumbClass: 'thumb-poster',
     thumbLabel: 'Poster',
   },
@@ -239,9 +261,13 @@ function buildCards() {
          </div>`
       : '';
 
+    const thumbStyle = p.img
+      ? ` style="background-image:url('${p.img}');background-size:cover;background-position:top center;"`
+      : '';
+
     card.innerHTML = `
-      <div class="card-thumb ${p.thumbClass}">
-        <span class="thumb-label">${p.thumbLabel}</span>
+      <div class="card-thumb ${p.thumbClass}"${thumbStyle}>
+        ${p.img ? '' : `<span class="thumb-label">${p.thumbLabel}</span>`}
         ${iconOverlay}
       </div>
       <div class="card-body">
@@ -260,10 +286,6 @@ function buildCards() {
 }
 
 function handleCardClick(p) {
-  if (p.type === 'website') {
-    window.open(p.link, '_blank', 'noopener,noreferrer');
-    return;
-  }
   openModal(p);
 }
 
@@ -332,6 +354,38 @@ function closeModal() {
 function buildModalContent(p) {
   let media = '';
 
+  if (p.type === 'website') {
+    const heroImg = p.img
+      ? `<div class="modal-hero-img" style="background-image:url('${p.img}')"></div>`
+      : '';
+    const rolesHtml = p.roles?.length
+      ? `<div class="modal-section">
+           <h3 class="modal-section-label">담당 영역</h3>
+           <ul class="modal-roles">
+             ${p.roles.map(r => `<li>${r}</li>`).join('')}
+           </ul>
+         </div>`
+      : '';
+    const visitBtn = p.link && p.link !== '#'
+      ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" class="modal-visit-btn"><span>사이트 방문 →</span></a>`
+      : '';
+
+    return `
+      ${heroImg}
+      <div class="modal-detail">
+        <div class="modal-detail-meta">
+          <span class="modal-detail-tag">${TYPE_KO[p.type]}</span>
+          ${visitBtn}
+        </div>
+        <h2 class="modal-detail-title">${p.title}</h2>
+        <div class="modal-section">
+          <h3 class="modal-section-label">프로젝트 개요</h3>
+          <p class="modal-section-body">${p.detail || p.desc}</p>
+        </div>
+        ${rolesHtml}
+      </div>`;
+  }
+
   if (p.type === 'video') {
     if (p.isEmbed && p.videoSrc) {
       // ✏️ YouTube embed
@@ -355,28 +409,36 @@ function buildModalContent(p) {
   }
 
   if (p.type === 'cardnews') {
-    const slides = Array.from({ length: p.slides }, (_, i) => `
-      <div class="slider-slide thumb-cardnews">
-        <!-- ✏️ 실제 이미지: <img src="..." alt="슬라이드 ${i+1}"> 로 교체 -->
-        <span>${i + 1} / ${p.slides}</span>
-      </div>`).join('');
+    const count = p.images ? p.images.length : (p.slides || 0);
+    const slideItems = p.images
+      ? p.images.map((src, i) => `
+          <div class="slider-slide slider-slide--img">
+            <img src="${src}" alt="슬라이드 ${i + 1}">
+          </div>`).join('')
+      : Array.from({ length: count }, (_, i) => `
+          <div class="slider-slide thumb-cardnews">
+            <span>${i + 1} / ${count}</span>
+          </div>`).join('');
 
     media = `
       <div class="slider-wrap" id="sliderWrap">
-        <div class="slider-track" id="sliderTrack">${slides}</div>
+        <div class="slider-track" id="sliderTrack">${slideItems}</div>
       </div>
       <div class="slider-controls">
         <button class="slider-btn" id="sliderPrev" aria-label="이전">&#8592;</button>
-        <span class="slider-counter" id="sliderCounter">1 / ${p.slides}</span>
+        <span class="slider-counter" id="sliderCounter">1 / ${count}</span>
         <button class="slider-btn" id="sliderNext" aria-label="다음">&#8594;</button>
       </div>`;
   }
 
   if (p.type === 'poster') {
-    media = `<div class="modal-poster thumb-poster">
-      <!-- ✏️ 실제 이미지: <img src="..." alt="${p.title}" style="width:100%;height:100%;object-fit:cover;"> 로 교체 -->
-      <span>✏️ 포스터 이미지 삽입 위치</span>
-    </div>`;
+    media = p.img
+      ? `<div class="modal-poster modal-poster--img">
+           <img src="${p.img}" alt="${p.title}">
+         </div>`
+      : `<div class="modal-poster thumb-poster">
+           <span>✏️ 포스터 이미지 삽입 위치</span>
+         </div>`;
   }
 
   return `
