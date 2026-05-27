@@ -223,6 +223,15 @@ a { color: inherit; }
   pointer-events: none;
   will-change: transform;
   animation: floatA 19s ease-in-out infinite;
+  transition: right 0.6s ease, bottom 0.6s ease, width 0.6s ease, max-width 0.6s ease;
+}
+
+/* 섹션 2 (Projects) — 작게, 왼쪽으로, 회전 */
+.sil-follow[data-section="2"] {
+  right: 24%;
+  bottom: 0%;
+  width: 36vw;
+  max-width: 500px;
 }
 
 .sil-follow .sil-img {
@@ -230,9 +239,13 @@ a { color: inherit; }
   width: 100%;
   height: auto;
   opacity: 0;
-  transition: opacity var(--ts);
+  transition: opacity var(--ts), transform 0.6s ease;
 }
 .sil-follow .sil-img[src]:not([src=""]) { opacity: 0.38; }
+
+.sil-follow[data-section="2"] .sil-img {
+  transform: rotate(-22deg) translateX(-8%);
+}
 
 
 /* ── Float Animations ────────────────────────────── */

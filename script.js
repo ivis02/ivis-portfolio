@@ -183,9 +183,10 @@ function onScroll() {
   $nav.classList.toggle('on-dark',   effectivelyDark);
   $nav.classList.toggle('on-light', !effectivelyDark);
 
-  // 섹션 전환 시 실루엣 이미지 교체
+  // 섹션 전환 시 실루엣 이미지 교체 + 위치/회전 변경
   if (activeIdx !== lastSectionIdx) {
     lastSectionIdx = activeIdx;
+    if ($silFollow) $silFollow.dataset.section = activeIdx;
     swapSilImage(activeIdx);
   }
 }
