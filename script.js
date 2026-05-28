@@ -548,16 +548,12 @@ function swapSilImage(idx) {
   const next = SIL_IMAGES[idx % SIL_IMAGES.length];
   if (img.getAttribute('src') === next) return;
 
-  img.style.transition = 'opacity 0.3s ease';
+  // fade out → swap src → CSS가 fade in 처리
   img.style.opacity = '0';
   setTimeout(() => {
     img.src = next;
-    img.style.opacity = '0.38';
-    setTimeout(() => {
-      img.style.transition = '';
-      img.style.opacity = '';
-    }, 320);
-  }, 310);
+    img.style.opacity = ''; // CSS rule이 0.38로 fade in
+  }, 420);
 }
 
 (function initSilFollow() {
